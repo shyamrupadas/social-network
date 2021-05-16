@@ -1,4 +1,4 @@
-import c from "./MyPosts.module.css";
+import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 const MyPosts = () => {
@@ -8,7 +8,7 @@ const MyPosts = () => {
       <div>
         new post
       </div>
-      <div className={c.posts}>
+      <div className={s.posts}>
         <Post message='Привет, мир!' like='5'/>
         <Post message='Ом намо бхагавате васудевайа!' like='108'/>
       </div>

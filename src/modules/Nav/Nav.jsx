@@ -1,12 +1,12 @@
-import c from './Nav.module.css';
+import s from './Nav.module.css';
 
 const Nav = () => {
   return (
-    <nav className={c.nav}>
-      <div className={c.item}>Profile</div>
-      <div className={`${c.item} ${c.active}`}>Messages</div>
-      <div className={c.item}>News</div>
-      <div className={c.item}>Music</div>
+    <nav className={s.nav}>
+      <div className={s.item}>Profile</div>
+      <div className={`${s.item} ${s.active}`}>Messages</div>
+      <div className={s.item}>News</div>
+      <div className={s.item}>Music</div>
     </nav>
   )
 }
