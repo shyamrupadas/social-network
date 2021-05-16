@@ -1,12 +1,12 @@
 import c from "./Post.module.css";
 
-const Post = () => {
+const Post = (props) => {
   return (
     <div className={c.item}>
       <img src="http://hypeava.ru/uploads/posts/2018-05/1527186681_1.jpg" alt="Ava"/>
-      Post 1
+      { props.message }
       <div>
-        <span>like</span>
+        <span>{ props.like } like</span>
       </div>
     </div>
   )

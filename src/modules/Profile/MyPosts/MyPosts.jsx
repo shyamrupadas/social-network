@@ -9,10 +9,8 @@ const MyPosts = () => {
         new post
       </div>
       <div className={c.posts}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <Post message='Привет, мир!' like='5'/>
+        <Post message='Ом намо бхагавате васудевайа!' like='108'/>
       </div>
     </div>
   )
