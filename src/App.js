@@ -7,7 +7,6 @@ import Dialogs from "./modules/Dialogs/Dialogs";
 import News from "./modules/News/News";
 import Music from "./modules/Music/Music";
 import Settings from "./modules/Settings/Settings";
-import {updateNewMessage} from "./redux/state";
 
 const App = (props) => {
 
@@ -17,12 +16,12 @@ const App = (props) => {
         <Header/>
         <Navbar/>
         <div className='app-wrapper-content'>
-          <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}
-                                                        addPost={props.addPost}
-                                                        updateNewPostText={props.updateNewPostText}/>}/>
-          <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage}
-                                                        addMessage={props.addMessage}
-                                                        updateNewMessage={props.updateNewMessage}/>}/>
+          <Route path='/profile' render={() => <Profile profilePage={props.store.getState().profilePage}
+                                                        addPost={props.store.addPost.bind(props.store)}
+                                                        updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}/>
+          <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.store.getState().dialogsPage}
+                                                        addMessage={props.store.addMessage.bind(props.store)}
+                                                        updateNewMessage={props.store.updateNewMessage.bind(props.store)}/>}/>
           <Route path='/news' render={() => <News/>}/>
           <Route path='/music' render={() => <Music/>}/>
           <Route path='/settings' render={() => <Settings/>}/>
