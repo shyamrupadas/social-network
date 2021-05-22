@@ -38,31 +38,44 @@ const store = {
   },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
-      let newPost = {
-        id: 4,
-        message: this._state.profilePage.newPostText,
-        likesCount: 0,
-      };
+    switch (action.type) {
+      case 'ADD-POST':
+      {
+        let newPost = {
+          id: 4,
+          message: this._state.profilePage.newPostText,
+          likesCount: 0,
+        };
 
-      this._state.profilePage.posts.unshift(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber(this._state);
-    } else if (action.type === 'ADD-MESSAGE') {
-      let newMessage = {
-        id: 6,
-        message: this._state.dialogsPage.newMessageText,
-      };
+        this._state.profilePage.posts.unshift(newPost);
+        this._state.profilePage.newPostText = '';
+        this._callSubscriber(this._state);
+        break;
+      }
+      case 'ADD-MESSAGE':
+      {
+        let newMessage = {
+          id: 6,
+          message: this._state.dialogsPage.newMessageText,
+        };
 
-      this._state.dialogsPage.messages.push(newMessage);
-      this._state.dialogsPage.newMessageText = '';
-      this._callSubscriber(this._state);
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    } else if (action.type === 'UPDATE-NEW-MESSAGE') {
-      this._state.dialogsPage.newMessageText = action.newText;
-      this._callSubscriber(this._state);
+        this._state.dialogsPage.messages.push(newMessage);
+        this._state.dialogsPage.newMessageText = '';
+        this._callSubscriber(this._state);
+        break;
+      }
+      case 'UPDATE-NEW-POST-TEXT':
+      {
+        this._state.profilePage.newPostText = action.newText;
+        this._callSubscriber(this._state);
+        break;
+      }
+      case 'UPDATE-NEW-MESSAGE':
+      {
+        this._state.dialogsPage.newMessageText = action.newText;
+        this._callSubscriber(this._state);
+        break;
+      }
     }
   },
 
