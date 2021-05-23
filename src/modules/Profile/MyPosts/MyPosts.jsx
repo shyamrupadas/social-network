@@ -12,8 +12,8 @@ const MyPosts = (props) => {
     props.dispatch(addPostCreator())
   };
 
-  let onPostChange = () => {
-    let text = newPostElement.current.value;
+  let onPostChange = (e) => {
+    let text = e.target.value;
     props.dispatch(updateNewPostTextCreator(text))
   };
 
@@ -22,7 +22,7 @@ const MyPosts = (props) => {
       <h3>My posts</h3>
       <div>
         <div>
-          <textarea ref={newPostElement} placeholder='Как у вас дела?' value={props.newPostText} onChange={onPostChange}/>
+          <textarea placeholder='Как у вас дела?' value={props.newPostText} onChange={onPostChange}/>
         </div>
         <div>
           <button onClick={ addPost }>Add post</button>
