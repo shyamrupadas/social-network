@@ -6,8 +6,6 @@ import {addPostCreator, updateNewPostTextCreator} from "../../../redux/state";
 const MyPosts = (props) => {
   const postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>);
 
-  let newPostElement = React.createRef();
-
   const addPost = () => {
     props.dispatch(addPostCreator())
   };

@@ -8,13 +8,13 @@ const Dialogs = (props) => {
   const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
   const messagesElements = props.dialogsPage.messages.map(m => <Message msg={m.message}/>);
 
-   const onSendMessageClick = () => {
+  const onSendMessageClick = () => {
     props.dispatch(sendMessageCreator())
   };
 
   const onNewMessageChange = (e) => {
     let body = e.target.value;
-      props.dispatch(updateNewMessageCreator(body));
+    props.dispatch(updateNewMessageCreator(body));
   };
 
   return (
@@ -25,7 +25,7 @@ const Dialogs = (props) => {
       </div>
       <div className={s.messages}>
         {messagesElements}
-        <textarea placeholder='Напишите сообщение!' value={props.dialogsPage.newMessageText} onChange={onNewMessageChange}/>
+        <textarea placeholder='Напишите сообщение!' value={props.dialogsPage.newMessageBody} onChange={onNewMessageChange}/>
         <div>
           <button onClick={onSendMessageClick}>Отправить!</button>
         </div>

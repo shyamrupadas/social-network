@@ -1,3 +1,7 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
@@ -29,8 +33,9 @@ const store = {
         {id: 4, message: 'Namaste!'},
         {id: 5, message: 'Hari-bol!'},
       ],
-      newMessageText: '',
+      newMessageBody: '',
     },
+    sidebar: {},
   },
   _callSubscriber() {
     console.log('state changed')
@@ -44,41 +49,11 @@ const store = {
   },
 
   dispatch(action) {
-    switch (action.type) {
-      case ADD_POST: {
-        let newPost = {
-          id: 4,
-          message: this._state.profilePage.newPostText,
-          likesCount: 0,
-        };
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-        this._state.profilePage.posts.unshift(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-        break;
-      }
-      case SEND_MESSAGE: {
-        let newMessage = {
-          id: 6,
-          message: this._state.dialogsPage.newMessageText,
-        };
-
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = '';
-        this._callSubscriber(this._state);
-        break;
-      }
-      case UPDATE_NEW_POST_TEXT: {
-        this._state.profilePage.newPostText = action.newText;
-        this._callSubscriber(this._state);
-        break;
-      }
-      case UPDATE_NEW_MESSAGE_BODY: {
-        this._state.dialogsPage.newMessageText = action.body;
-        this._callSubscriber(this._state);
-        break;
-      }
-    }
+    this._callSubscriber(this._state);
   },
 
 }
