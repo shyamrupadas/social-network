@@ -1,19 +1,19 @@
 import './App.css';
 import Header from "./modules/Header/Header";
-import Navbar from "./modules/Nav/Navbar";
 import Profile from "./modules/Profile/Profile";
 import {Route} from "react-router-dom";
 import Dialogs from "./modules/Dialogs/Dialogs";
 import News from "./modules/News/News";
 import Music from "./modules/Music/Music";
 import Settings from "./modules/Settings/Settings";
+import Sidebar from "./modules/Sidebar/Sidebar";
 
 const App = (props) => {
 
   return (
        <div className='app-wrapper'>
         <Header/>
-        <Navbar/>
+        <Sidebar/>
         <div className='app-wrapper-content'>
           <Route path='/profile' render={() => <Profile profilePage={props.store.getState().profilePage}
                                                         dispatch={props.store.dispatch.bind(props.store)} />}/>
