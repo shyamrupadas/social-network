@@ -4,13 +4,17 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import store from "./redux/state";
 import App from "./App";
+import {BrowserRouter} from "react-router-dom";
 
 const rerenderEntireTree = () => {
 
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} />
-    </React.StrictMode>,
+      <BrowserRouter>
+        <App store={store} />
+      </BrowserRouter>
+    </React.StrictMode>
+  ,
     document.getElementById('root')
   );
 };

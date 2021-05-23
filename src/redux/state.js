@@ -1,7 +1,8 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
+
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
 const store = {
   _state: {
@@ -44,7 +45,7 @@ const store = {
 
   dispatch(action) {
     switch (action.type) {
-      case 'ADD-POST': {
+      case ADD_POST: {
         let newPost = {
           id: 4,
           message: this._state.profilePage.newPostText,
@@ -56,7 +57,7 @@ const store = {
         this._callSubscriber(this._state);
         break;
       }
-      case 'ADD-MESSAGE': {
+      case SEND_MESSAGE: {
         let newMessage = {
           id: 6,
           message: this._state.dialogsPage.newMessageText,
@@ -67,13 +68,13 @@ const store = {
         this._callSubscriber(this._state);
         break;
       }
-      case 'UPDATE-NEW-POST-TEXT': {
+      case UPDATE_NEW_POST_TEXT: {
         this._state.profilePage.newPostText = action.newText;
         this._callSubscriber(this._state);
         break;
       }
-      case 'UPDATE-NEW-MESSAGE': {
-        this._state.dialogsPage.newMessageText = action.newText;
+      case UPDATE_NEW_MESSAGE_BODY: {
+        this._state.dialogsPage.newMessageText = action.body;
         this._callSubscriber(this._state);
         break;
       }
@@ -82,13 +83,11 @@ const store = {
 
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST})
+export const addPostCreator = () => ({type: ADD_POST})
+export const updateNewPostTextCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
-
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
-
-export const updateNewMessageActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE, newText: text})
+export const sendMessageCreator = () => ({type: SEND_MESSAGE})
+export const updateNewMessageCreator = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
 
 
 export default store;
