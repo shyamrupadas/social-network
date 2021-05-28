@@ -4,8 +4,8 @@ import Message from "./Messages/Message";
 import React from "react";
 
 const Dialogs = (props) => {
-  const dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
-  const messagesElements = props.state.messages.map(m => <Message msg={m.message}/>);
+  const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+  const messagesElements = props.dialogsPage.messages.map(m => <Message msg={m.message}/>);
 
   const onSendMessageClick = () => {
     props.sendMessage()
@@ -24,7 +24,7 @@ const Dialogs = (props) => {
       </div>
       <div className={s.messages}>
         {messagesElements}
-        <textarea placeholder='Напишите сообщение!' value={props.state.newMessageBody} onChange={onNewMessageChange}/>
+        <textarea placeholder='Напишите сообщение!' value={props.dialogsPage.newMessageBody} onChange={onNewMessageChange}/>
         <div>
           <button onClick={onSendMessageClick}>Отправить!</button>
         </div>
