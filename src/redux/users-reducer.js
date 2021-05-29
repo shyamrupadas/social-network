@@ -4,30 +4,7 @@ const SET_USERS = 'SET-USERS';
 
 const initialState = {
   users: [
-    /*{
-      id: 1,
-      followed: false,
-      fullName: 'Vasiliy Ivanovich',
-      avatarSrc: 'https://hypeava.ru/uploads/posts/2018-05/1527186681_1.jpg',
-      status: 'I\'m a man',
-      location: {country: 'Russia', city: 'Moscow'}
-    },
-    {
-      id: 2,
-      followed: true,
-      fullName: 'Petyka',
-      avatarSrc: 'https://hypeava.ru/uploads/posts/2018-05/1527186681_1.jpg',
-      status: 'I\'m a little man',
-      location: {country: 'Russia', city: 'Uryupinsk'}
-    },
-    {
-      id: 3,
-      followed: false,
-      fullName: 'Bill Gates',
-      avatarSrc: 'https://hypeava.ru/uploads/posts/2018-05/1527186681_1.jpg',
-      status: 'I\'m a boss',
-      location: {country: 'USU', city: 'New-York'}
-    },*/
+
   ]
 
 };

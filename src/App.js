@@ -7,7 +7,7 @@ import Music from "./modules/Music/Music";
 import Settings from "./modules/Settings/Settings";
 import Sidebar from "./modules/Sidebar/Sidebar";
 import DialogsContainer from "./modules/Dialogs/DialogsContainer";
-import Users from "./modules/Users/Users";
+import UsersContainer from "./modules/Users/UsersContainer";
 
 const App = (props) => {
 
@@ -18,7 +18,7 @@ const App = (props) => {
         <div className='app-wrapper-content'>
           <Route path='/profile' render={() => <Profile />}/>
           <Route path='/dialogs' render={() => <DialogsContainer />}/>
-          <Route path='/users' render={() => <Users/>}/>
+          <Route path='/users' render={() => <UsersContainer/>}/>
           <Route path='/news' render={() => <News/>}/>
           <Route path='/music' render={() => <Music/>}/>
           <Route path='/settings' render={() => <Settings/>}/>
