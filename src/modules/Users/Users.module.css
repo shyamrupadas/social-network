@@ -8,3 +8,10 @@
     padding: 20px;
 }
 
+.selectedPage {
+    font-weight: bold;
+}
+
+.paginator {
+    cursor: pointer;
+}
