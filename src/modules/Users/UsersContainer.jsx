@@ -1,6 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
-import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "../../redux/users-reducer";
+import {
+  followAC,
+  setCurrentPageAC, setNextPageAC,
+  setPreviousPageAC,
+  setTotalUsersCountAC,
+  setUsersAC,
+  unfollowAC
+} from "../../redux/users-reducer";
 import * as axios from "axios";
 import Users from "./Users";
 
@@ -59,7 +66,7 @@ let mapDispatchToProps = (dispatch) => {
     },
     setTotalUsersCount: (totalUsersCount) => {
       dispatch(setTotalUsersCountAC(totalUsersCount))
-    }
+    },
   }
 
 }

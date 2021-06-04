@@ -12,15 +12,38 @@ let Users = (props) => {
     pages.push(i)
   }
 
+  // TODO добавить hover
+  // TODO вынести paginator в отдельнй компонент
+
   return <div className={styles.wrapper}>
-    <div>
+    <div className={styles.paginator}>
+
+      <span onClick={() => {
+        props.onPageChanged(1);
+      }}>First </span>
+
+      <span onClick={() => {
+        if (props.currentPage > 1) {
+          props.onPageChanged(props.currentPage - 1);
+        }
+      }}>Prev. </span>
+
       {pages.map(p => {
-        return <span className={styles.paginator}>
-          <span className={props.currentPage === p && styles.selectedPage}
-                onClick={(e) => {props.onPageChanged(p)}}>{p + " "}
+        if ((props.currentPage - p) < 2  && (p - props.currentPage) < 2) {
+          return <span className={props.currentPage === p && styles.selectedPage}
+                       onClick={(e) => {props.onPageChanged(p)}}>{p + " "}
           </span>
-        </span>
+        }
       })}
+      <span onClick={() => {
+        if (props.currentPage < pagesCount) {
+          props.onPageChanged(props.currentPage + 1);
+        }
+
+      }}>Next </span>
+      <span onClick={() => {
+        props.onPageChanged(pagesCount);
+      }}>Last</span>
     </div>
     {
       props.users.map(u => <div key={u.id}>
