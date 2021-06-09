@@ -23,9 +23,9 @@ const Paginator = (props) => {
       }
     }}>Prev. </span>
 
-    {pages.map(p => {
+    {pages.map((p, index) => {
       if ((props.currentPage - p) < 2 && (p - props.currentPage) < 2) {
-        return <span className={props.currentPage === p && styles.selectedPage}
+        return <span key={index} className={props.currentPage === p ? styles.selectedPage : undefined}
                      onClick={(e) => {
                        props.onPageChanged(p)
                      }}>{p + " "}

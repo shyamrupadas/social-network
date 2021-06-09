@@ -1,9 +1,10 @@
 import s from './Header.module.css';
+import logo from '../../assets/images/logo.png';
 
 const Header = () => {
   return (
     <header className={s.header}>
-      <img src='https://cdn.logo.com/hotlink-ok/logo-social.png' alt='Logo'/>
+      <img src={logo} alt='Logo'/>
     </header>
   )
 }
