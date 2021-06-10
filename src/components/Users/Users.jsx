@@ -11,7 +11,7 @@ let Users = (props) => {
                totalUsersCount={props.totalUsersCount}
                pageSize={props.pageSize}
                currentPage={props.currentPage}/>
-
+    <div className={styles.content}>
     {
       props.users.map(u => <div key={u.id}>
           <span>
@@ -44,6 +44,11 @@ let Users = (props) => {
 
       </div>)
     }
+    </div>
+    <Paginator onPageChanged={props.onPageChanged}
+               totalUsersCount={props.totalUsersCount}
+               pageSize={props.pageSize}
+               currentPage={props.currentPage}/>
   </div>
 }
 
