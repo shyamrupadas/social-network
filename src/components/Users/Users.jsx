@@ -3,8 +3,7 @@ import userPhoto from "../../assets/images/user.jpg";
 import React from "react";
 import Paginator from "../common/Paginator/Paginator";
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {followUser, unfollowUser} from "../../api/api";
+import {userAPI} from "../../api/api";
 
 let Users = (props) => {
 
@@ -27,7 +26,7 @@ let Users = (props) => {
               {u.followed
                 ? <button onClick={() => {
 
-                    unfollowUser(u.id)
+                  userAPI.unfollowUser(u.id)
                     .then(data => {
                       if (data.resultCode == 0) {
                         props.unfollow(u.id)
@@ -37,7 +36,7 @@ let Users = (props) => {
                 }}>Unfollow</button>
                 : <button onClick={() => {
 
-                  followUser(u.id)
+                  userAPI.followUser(u.id)
                     .then(data => {
                       if (data.resultCode == 0) {
                         props.follow(u.id)
