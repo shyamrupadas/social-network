@@ -3,7 +3,6 @@ import userPhoto from "../../assets/images/user.jpg";
 import React from "react";
 import Paginator from "../common/Paginator/Paginator";
 import {NavLink} from "react-router-dom";
-import {userAPI} from "../../api/api";
 
 let Users = (props) => {
 
@@ -24,31 +23,13 @@ let Users = (props) => {
             </div>
             <div>
               {u.followed
-                ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                  props.toggleFollowingInProgress(true, u.id);
-
-                  userAPI.unfollowUser(u.id)
-                    .then(data => {
-                      if (data.resultCode == 0) {
-                        props.unfollow(u.id)
-                      }
-                      props.toggleFollowingInProgress(false, u.id);
-                    });
-
-                }}>Unfollow</button>
-                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                  props.toggleFollowingInProgress(true, u.id);
-
-                  userAPI.followUser(u.id)
-                    .then(data => {
-                      if (data.resultCode == 0) {
-                        props.follow(u.id)
-                      }
-                      props.toggleFollowingInProgress(false, u.id);
-                    });
-
-                }}>Follow</button>}
-
+                ? <button disabled={props.followingInProgress
+                  .some(id => id === u.id)}
+                          onClick={() => { props.unfollow(u.id); }}>
+                  Unfollow</button>
+                : <button disabled={props.followingInProgress
+                  .some(id => id === u.id)} onClick={() => { props.follow(u.id); }}>
+                  Follow</button>}
             </div>
           </span>
         <span>

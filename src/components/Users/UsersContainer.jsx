@@ -29,7 +29,6 @@ class UsersContainer extends React.Component {
              users={this.props.users}
              follow={this.props.follow}
              unfollow={this.props.unfollow}
-             toggleFollowingInProgress={this.props.toggleFollowingInProgress}
              followingInProgress={this.props.followingInProgress}/>
     </>
   }
@@ -48,5 +47,4 @@ let mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,
   {follow, unfollow, setUsers,
-    setCurrentPage, setTotalUsersCount, toggleIsFetching,
-    toggleFollowingInProgress, getUsers})(UsersContainer);
+    setCurrentPage, setTotalUsersCount, toggleIsFetching, getUsers})(UsersContainer);
