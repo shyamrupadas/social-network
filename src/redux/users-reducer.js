@@ -112,7 +112,7 @@ export const unfollow = (userId)  => {
       .then(data => {
         if (data.resultCode == 0) {
           dispatch(unfollowSuccess(userId))
-        } 
+        }
         dispatch(toggleFollowingInProgress(false, userId));
       });
   }
