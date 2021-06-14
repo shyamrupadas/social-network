@@ -28,9 +28,12 @@ export const userAPI = {
       .then(response => {
         return response.data;
       });
-  },
+  }
+}
 
-  isAuthorised() {
+export const authAPI = {
+
+  me() {
     return instance.get(`auth/me`)
       .then(response => {
         return response.data;
