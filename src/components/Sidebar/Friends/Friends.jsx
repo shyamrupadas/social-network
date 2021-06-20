@@ -1,5 +1,4 @@
 import s from './Friends.module.css';
-import {NavLink} from "react-router-dom";
 import Friend from "./Friend/Friend";
 
 const Friends = () => {
