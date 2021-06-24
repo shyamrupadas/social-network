@@ -28,13 +28,13 @@ const Dialogs = (props) => {
   )
 }
 
-const maxLength100 = maxLengthCreator(100)
+const maxLength50 = maxLengthCreator(50)
 
 const DialogsForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div><Field component={Textarea} placeholder='Напишите сообщение!' name='newMessageBody'
-                  validate={[required, maxLength100]} /></div>
+                  validate={[required, maxLength50]} /></div>
       <div><button>Отправить!</button></div>
     </form>
   )
