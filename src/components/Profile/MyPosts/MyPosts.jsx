@@ -2,6 +2,8 @@ import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators/validators";
+import {Textarea} from "../../common/FormsContrls/FormsControls";
 
 const MyPosts = (props) => {
   const postsElements = props.profilePage.posts.map(p => <Post message={p.message} key={p.id} likesCount={p.likesCount}/>);
@@ -21,11 +23,14 @@ const MyPosts = (props) => {
   )
 }
 
+const maxLength10 = maxLengthCreator(10)
+
 const MyPostForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        <Field component='textarea' name='newPostText' placeholder='Как у вас дела?'/>
+        <Field component={Textarea} name='newPostText' placeholder='Как у вас дела?'
+        validate={[required, maxLength10]}/>
       </div>
       <div>
         <button>Добавить запись</button>
