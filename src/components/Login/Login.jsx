@@ -1,12 +1,14 @@
 import {Field, reduxForm} from "redux-form";
+import {Input} from "../common/FormsContrls/FormsControls";
+import {required} from "../../utils/validators/validators";
 
 const LoginForm = (props) => {
   return (
     <div>
       <form onSubmit={props.handleSubmit}>
-        <div><Field placeholder={'Логин'} name={'login'} component={'input'}/></div>
-        <div><Field placeholder={'Пароль'} name={'password'} component={'input'}/></div>
-        <div><Field component={'input'} name={'rememberMe'} type={'checkbox'}/>Запомнить меня</div>
+        <div><Field component={Input} name='login' placeholder='Логин' validate={required} /></div>
+        <div><Field component={Input} name='password' placeholder='Пароль' validate={required} /></div>
+        <div><Field component={Input} name='rememberMe' type='checkbox' />Запомнить меня</div>
         <div><button>Войти</button></div>
       </form>
     </div>
@@ -16,7 +18,7 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
 
-const Login = (props) => {
+const Login = () => {
   const onSubmit = (formData) => {
     console.log(formData);
   }

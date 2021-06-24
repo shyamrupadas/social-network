@@ -30,7 +30,7 @@ const MyPostForm = (props) => {
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field component={Textarea} name='newPostText' placeholder='Как у вас дела?'
-        validate={[required, maxLength10]}/>
+        validate={[required, maxLength10]} />
       </div>
       <div>
         <button>Добавить запись</button>
