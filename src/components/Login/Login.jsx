@@ -1,3 +1,4 @@
+import style from '../common/FormsContrls/FormsControls.module.css'
 import {Field, reduxForm} from "redux-form";
 import {Input} from "../common/FormsContrls/FormsControls";
 import {required} from "../../utils/validators/validators";
@@ -14,6 +15,7 @@ const LoginForm = (props) => {
         <div><Field component={Input} name='password' placeholder='Пароль' type='password'
                     validate={required}/></div>
         <div><Field component={Input} name='rememberMe' type='checkbox'/>Запомнить меня</div>
+        {props.error && <span className={style.formSummaryError}>{props.error}</span>}
         <div>
           <button>Войти</button>
         </div>
