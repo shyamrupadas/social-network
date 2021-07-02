@@ -1,4 +1,4 @@
-import styles from "../../Users/Users.module.css";
+import styles from "./Paginator.Module.css";
 import React from "react";
 
 const Paginator = (props) => {

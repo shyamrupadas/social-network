@@ -1,0 +1,15 @@
+.selectedPage {
+    font-weight: bold;
+}
+
+.paginator {
+    cursor: pointer;
+}
+
+span:hover {
+    color: white;
+}
+
+.content {
+    padding: 10px 0 10px 0;
+}
