@@ -1,9 +1,9 @@
 import {checkAuthorised} from "./auth-reducer";
 
-const INITIALIZING_SUCCESS = 'INITIALIZING_SUCCESS';
+const INITIALIZING_SUCCESS = 'social-network/app/INITIALIZING_SUCCESS';
 
 const initialState = {
-  initialized: false,
+  initialized: false
 };
 
 const appReducer = (state = initialState, action) => {
