@@ -10,7 +10,7 @@ let Users = (props) => {
                totalUsersCount={props.totalUsersCount}
                pageSize={props.pageSize}
                currentPage={props.currentPage}/>
-    <div>
+    <div className={styles.usersWrapper}>
     {
       props.users.map(u => <User key={u.id}
                                  user={u}
