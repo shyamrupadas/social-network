@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -53,13 +53,13 @@ const mapStateToProps = (state) => ({
 
 const AppContainer = connect(mapStateToProps, {initializeApp})(App);
 
-const SocialNetworkApp = (props) => {
+const SocialNetworkApp = () => {
     return <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>
 }
 
