@@ -6,12 +6,12 @@ import {NavLink} from "react-router-dom";
 let User = ({user, followingInProgress, follow, unfollow}) => {
 
     return (
-    <div>
+        <div>
           <span>
             <div>
               <NavLink to={'/profile/' + user.id}>
-              <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto}
-                   alt="Some img"/>
+                  <img src={user.photos.small || userPhoto} className={styles.userPhoto}
+                       alt="Some img"/>
                 </NavLink>
             </div>
             <div>
@@ -29,7 +29,7 @@ let User = ({user, followingInProgress, follow, unfollow}) => {
                       Follow</button>}
             </div>
           </span>
-        <span>
+            <span>
             <span>
               <div>
                 {user.name}
@@ -43,7 +43,7 @@ let User = ({user, followingInProgress, follow, unfollow}) => {
               <div>{"u.location.city"}</div>
             </span>
           </span>
-    </div>)
+        </div>)
 }
 
 export default User;
