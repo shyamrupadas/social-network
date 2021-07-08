@@ -16,7 +16,6 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
     }
 
 
-
     return (
         <div>
             <div className={s.descriptionBlock}>
@@ -24,7 +23,7 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
                 <div>
                     {isOwner && <input type="file" onChange={onMainPhotoSelected}/>}
                 </div>
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                <div><p>Статус:<ProfileStatusWithHooks status={status} updateStatus={updateStatus}/></p></div>
                 <div>
                     <h3>{profile.fullName}</h3>
                 </div>
@@ -32,26 +31,26 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
                     <p>Обо мне: {profile.aboutMe}</p>
                 </div>
                 <div>
-                    <p>Ищу работу: {profile.lookingForAJob === true ? 'Да' : 'Нет'}</p>
+                    <p>Ищу работу: {profile.lookingForAJob ? 'Да' : 'Нет'}</p>
                 </div>
+                {profile.lookingForAJob &&
                 <div>
-                    <p>Подробнее: {profile.lookingForAJobDescription && profile.lookingForAJobDescription}</p>
-                </div>
+                    <p>Мои профессионалные
+                        навыки: {profile.lookingForAJobDescription && profile.lookingForAJobDescription}</p>
+                </div>}
                 <div>
                     <h3>Контакты</h3>
-                    {profile.contacts.facebook && <p>facebook: {profile.contacts.facebook}</p>}
-                    {profile.contacts.github && <p>github: {profile.contacts.github}</p>}
-                    {profile.contacts.instagram && <p>instagram: {profile.contacts.instagram}</p>}
-                    {profile.contacts.mainLink && <p>mainLink: {profile.contacts.mainLink}</p>}
-                    {profile.contacts.twitter && <p>twitter: {profile.contacts.twitter}</p>}
-                    {profile.contacts.vk && <p>vk: {profile.contacts.vk}</p>}
-                    {profile.contacts.website && <p>website: {profile.contacts.website}</p>}
-                    {profile.contacts.youtube && <p>youtube: {profile.contacts.youtube}</p>}
-
+                    {Object.keys(profile.contacts).map(key =>{
+                        return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+                    }) }
                 </div>
             </div>
         </div>
     )
+}
+
+const Contact = ({contactTitle, contactValue}) => {
+    return <div className={s.contact}>{true && <div>{contactTitle}: {contactValue}</div>}</div>
 }
 
 export default ProfileInfo;
