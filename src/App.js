@@ -1,5 +1,5 @@
 import './App.css';
-import {HashRouter, Route} from "react-router-dom";
+import {HashRouter, Redirect, Route, Switch} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -33,15 +33,19 @@ class App extends Component {
                 <HeaderContainer/>
                 <Sidebar/>
                 <div className='app-wrapper-content'>
-                    <Suspense fallback={<Preloader/>}>
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    </Suspense>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/news' render={() => <News/>}/>
-                    <Route path='/music' render={() => <Music/>}/>
-                    <Route path='/settings' render={() => <Settings/>}/>
-                    <Route path='/login' render={() => <LoginPage/>}/>
+                    {/*<Switch>*/}
+                        <Suspense fallback={<Preloader/>}>
+                            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                        </Suspense>
+                        <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/music' render={() => <Music/>}/>
+                        <Route path='/settings' render={() => <Settings/>}/>
+                        <Route path='/login' render={() => <LoginPage/>}/>
+                        {/*<Route path='*' render={() => <div>404 - PAGE NOT FOUND</div>}/>*/}
+                    {/*</Switch>*/}
                 </div>
             </div>
         );

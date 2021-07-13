@@ -1,5 +1,6 @@
 import styles from "./Paginator.Module.css";
 import React from "react";
+import cn from 'classnames'
 
 const Paginator = (props) => {
 
@@ -24,7 +25,10 @@ const Paginator = (props) => {
 
     {pages.map((p, index) => {
       if ((props.currentPage - p) < 2 && (p - props.currentPage) < 2) {
-        return <span key={index} className={props.currentPage === p ? styles.selectedPage : undefined}
+        // return <span key={index} className={props.currentPage === p ? styles.selectedPage : undefined}
+        return <span key={index} className={cn({
+          [styles.selectedPage]: props.currentPage === p
+        }, styles.pageNumber)}
                      onClick={(e) => {
                        props.onPageChanged(p)
                      }}>{p + " "}
