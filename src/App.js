@@ -17,9 +17,17 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 class App extends Component {
+    catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        alert('Произошла ошибка!');
+    }
 
     componentDidMount() {
         this.props.initializeApp();
+        window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
 
     render() {
@@ -34,17 +42,17 @@ class App extends Component {
                 <Sidebar/>
                 <div className='app-wrapper-content'>
                     {/*<Switch>*/}
-                        <Suspense fallback={<Preloader/>}>
-                            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                        </Suspense>
-                        <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/news' render={() => <News/>}/>
-                        <Route path='/music' render={() => <Music/>}/>
-                        <Route path='/settings' render={() => <Settings/>}/>
-                        <Route path='/login' render={() => <LoginPage/>}/>
-                        {/*<Route path='*' render={() => <div>404 - PAGE NOT FOUND</div>}/>*/}
+                    <Suspense fallback={<Preloader/>}>
+                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                    </Suspense>
+                    <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
+                    <Route path='/users' render={() => <UsersContainer/>}/>
+                    <Route path='/news' render={() => <News/>}/>
+                    <Route path='/music' render={() => <Music/>}/>
+                    <Route path='/settings' render={() => <Settings/>}/>
+                    <Route path='/login' render={() => <LoginPage/>}/>
+                    {/*<Route path='*' render={() => <div>404 - PAGE NOT FOUND</div>}/>*/}
                     {/*</Switch>*/}
                 </div>
             </div>
