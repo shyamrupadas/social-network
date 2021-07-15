@@ -2,11 +2,15 @@ import {checkAuthorised} from "./auth-reducer";
 
 const INITIALIZING_SUCCESS = 'social-network/app/INITIALIZING_SUCCESS';
 
-const initialState = {
+export type InitialStateType = {
+  initialized: boolean
+}
+
+const initialState: InitialStateType = {
   initialized: false
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case INITIALIZING_SUCCESS:
       return {
@@ -19,9 +23,13 @@ const appReducer = (state = initialState, action) => {
   }
 }
 
-export const initializingSuccess = () => ({type: INITIALIZING_SUCCESS});
+type InitializingSuccessActionType = {
+  type: typeof INITIALIZING_SUCCESS
+}
 
-export const initializeApp = () => (dispatch) => {
+export const initializingSuccess = (): InitializingSuccessActionType => ({type: INITIALIZING_SUCCESS});
+
+export const initializeApp = () => (dispatch: any) => {
   let promise = dispatch(checkAuthorised());
 
   Promise.all([promise])
