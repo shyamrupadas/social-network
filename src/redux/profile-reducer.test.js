@@ -1,10 +1,10 @@
-import profileReducer, {addPostCreator, deletePost} from "./profile-reducer";
+import profileReducer, { addPostCreator, deletePost } from './profile-reducer';
 
 const state = {
   posts: [
-    {id: 1, message: 'Привет, мир!', likesCount: 5},
-    {id: 2, message: 'Ом намо бхагавате васудевайа!', likesCount: 108},
-    {id: 3, message: 'Какой-нибудь еще пост', likesCount: 1108},
+    { id: 1, message: 'Привет, мир!', likesCount: 5 },
+    { id: 2, message: 'Ом намо бхагавате васудевайа!', likesCount: 108 },
+    { id: 3, message: 'Какой-нибудь еще пост', likesCount: 1108 },
   ]
 };
 

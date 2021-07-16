@@ -1,4 +1,4 @@
-import {checkAuthorised} from "./auth-reducer";
+import { checkAuthorised } from './auth-reducer';
 
 const INITIALIZING_SUCCESS = 'social-network/app/INITIALIZING_SUCCESS';
 
@@ -27,7 +27,7 @@ type InitializingSuccessActionType = {
   type: typeof INITIALIZING_SUCCESS
 }
 
-export const initializingSuccess = (): InitializingSuccessActionType => ({type: INITIALIZING_SUCCESS});
+export const initializingSuccess = (): InitializingSuccessActionType => ({ type: INITIALIZING_SUCCESS });
 
 export const initializeApp = () => (dispatch: any) => {
   let promise = dispatch(checkAuthorised());

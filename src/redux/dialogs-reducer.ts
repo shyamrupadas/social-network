@@ -11,18 +11,18 @@ type MessageType = {
 
 const initialState = {
   dialogs: [
-    {id: 1, name: 'Shyam Rupa'},
-    {id: 2, name: 'Vasliy'},
-    {id: 3, name: 'Uncle Gena'},
-    {id: 4, name: 'Валера'},
-    {id: 5, name: 'Иван Викторович'},
+    { id: 1, name: 'Shyam Rupa' },
+    { id: 2, name: 'Vasliy' },
+    { id: 3, name: 'Uncle Gena' },
+    { id: 4, name: 'Валера' },
+    { id: 5, name: 'Иван Викторович' },
   ] as Array<DialogType>,
   messages: [
-    {id: 1, message: 'Hello'},
-    {id: 2, message: 'What\' s up?'},
-    {id: 3, message: 'Merhaba'},
-    {id: 4, message: 'Namaste!'},
-    {id: 5, message: 'Hari-bol!'},
+    { id: 1, message: 'Hello' },
+    { id: 2, message: 'What\' s up?' },
+    { id: 3, message: 'Merhaba' },
+    { id: 4, message: 'Namaste!' },
+    { id: 5, message: 'Hari-bol!' },
   ] as Array<MessageType>,
 };
 
@@ -35,7 +35,7 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
       let body = action.newMessageBody;
       return {
         ...state,
-        messages: [...state.messages, {id: 6, message: body}],
+        messages: [...state.messages, { id: 6, message: body }],
       };
     }
 
@@ -49,6 +49,9 @@ type SendMessageCreatorActionType = {
   newMessageBody: string
 }
 
-export const sendMessageCreator = (newMessageBody: string): SendMessageCreatorActionType => ({type: SEND_MESSAGE, newMessageBody})
+export const sendMessageCreator = (newMessageBody: string): SendMessageCreatorActionType => ({
+  type: SEND_MESSAGE,
+  newMessageBody
+})
 
 export default dialogsReducer;

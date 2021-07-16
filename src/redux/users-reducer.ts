@@ -1,5 +1,5 @@
-import {userAPI} from "../api/api";
-import {UserType} from "../types/type";
+import { userAPI } from '../api/api';
+import { UserType } from '../types/type';
 
 const FOLLOW = 'social-network/users/FOLLOW';
 const UNFOLLOW = 'social-network/users/UNFOLLOW';
@@ -28,7 +28,7 @@ const usersReducer = (state = initialState, action: any): InitialStateType => {
         ...state,
         users: state.users.map(u => {
           if (u.id === action.userId) {
-            return {...u, followed: true};
+            return { ...u, followed: true };
           }
           return u;
         })
@@ -39,23 +39,23 @@ const usersReducer = (state = initialState, action: any): InitialStateType => {
         ...state,
         users: state.users.map(u => {
           if (u.id === action.userId) {
-            return {...u, followed: false};
+            return { ...u, followed: false };
           }
           return u;
         })
       }
 
     case SET_USERS:
-      return {...state, users: action.users}
+      return { ...state, users: action.users }
 
     case SET_CURRENT_PAGE:
-      return {...state, currentPage: action.currentPage}
+      return { ...state, currentPage: action.currentPage }
 
     case SET_TOTAL_USERS_COUNT:
-      return {...state, totalUsersCount: action.count}
+      return { ...state, totalUsersCount: action.count }
 
     case TOGGLE_IS_FETCHING:
-      return {...state, isFetching: action.isFetching}
+      return { ...state, isFetching: action.isFetching }
 
     case TOGGLE_FOLLOWING_IN_PROGRESS:
       return {
@@ -74,22 +74,25 @@ type FollowSuccessActionType = {
   type: typeof FOLLOW
   userId: number
 }
-export const followSuccess = (userId: number): FollowSuccessActionType => ({type: FOLLOW, userId})
+export const followSuccess = (userId: number): FollowSuccessActionType => ({ type: FOLLOW, userId })
 type UnfollowSuccessActionType = {
   type: typeof UNFOLLOW
   userId: number
 }
-export const unfollowSuccess = (userId: number): UnfollowSuccessActionType => ({type: UNFOLLOW, userId})
+export const unfollowSuccess = (userId: number): UnfollowSuccessActionType => ({ type: UNFOLLOW, userId })
 type SetUsersActionType = {
   type: typeof SET_USERS
   users: Array<UserType>
 }
-export const setUsers = (users: Array<UserType>): SetUsersActionType => ({type: SET_USERS, users})
+export const setUsers = (users: Array<UserType>): SetUsersActionType => ({ type: SET_USERS, users })
 type SetCurrentPageActionType = {
   type: typeof SET_CURRENT_PAGE
   currentPage: number
 }
-export const setCurrentPage = (currentPage: number): SetCurrentPageActionType => ({type: SET_CURRENT_PAGE, currentPage})
+export const setCurrentPage = (currentPage: number): SetCurrentPageActionType => ({
+  type: SET_CURRENT_PAGE,
+  currentPage
+})
 type SetTotalUsersCountActionType = {
   type: typeof SET_TOTAL_USERS_COUNT
   count: number
