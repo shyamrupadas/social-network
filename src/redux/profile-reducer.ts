@@ -1,5 +1,6 @@
 import {profileAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {PhotosType, PostType, ProfileType} from "../types/type";
 
 const ADD_POST = 'social-network/profile/ADD-POST';
 const SET_USER_PROFILE = 'social-network/profile/SET_USER_PROFILE';
@@ -7,34 +8,6 @@ const SET_STATUS = 'social-network/profile/SET_STATUS';
 const DELETE_POST = 'social-network/profile/DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'social-network/profile/SAVE_PHOTO_SUCCESS';
 
-type PostType = {
-  id: number
-  message: string
-  likesCount: number
-}
-
-type ContactsType = {
-  github: string
-  vk: string
-  facebook: string
-  instagram: string
-  twitter: string
-  website: string
-  youtube: string
-  mainLink: string
-}
-type PhotosType = {
-  small: string
-  large: string
-}
-type ProfileType = {
-  userId: number
-  lookingForAJob: boolean
-  lookingForAJobDescription: string
-  fullName: string
-  contacts: ContactsType
-  photos: PhotosType
-}
 
 const initialState = {
   posts: [
@@ -49,7 +22,7 @@ const initialState = {
 
 export type InitialStateType = typeof initialState;
 
-const profileReducer = (state = initialState, action: any) => {
+const profileReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case ADD_POST:
       let newPost = {
@@ -74,7 +47,7 @@ const profileReducer = (state = initialState, action: any) => {
       return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
 
     case SAVE_PHOTO_SUCCESS:
-      return {...state, profile: {...state.profile, photos: action.photos}}
+      return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
 
     default:
       return state;
