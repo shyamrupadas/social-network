@@ -1,13 +1,14 @@
 import style from '../common/FormsContrls/FormsControls.module.css'
 import s from './Login.module.css'
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
-import { Input } from "../common/FormsContrls/FormsControls";
+import { createField, Input, Textarea } from "../common/FormsContrls/FormsControls";
 import { required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reducer";
 import { Redirect } from "react-router-dom";
 import { AppStateType } from '../../redux/redux-store';
 import React from 'react';
+import { ProfileDataFormValuesType } from '../Profile/ProfileInfo/ProfileDataForm';
 
 type LoginFormOwnProps = {
   captchaUrl: string | null
@@ -18,11 +19,12 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType,
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div><Field component={Input} name='email' placeholder='Email'
-                    validate={required}/></div>
-        <div><Field component={Input} name='password' placeholder='Пароль' type='password'
-                    validate={required}/></div>
-        <div><Field component={Input} name='rememberMe' type='checkbox'/>Запомнить меня</div>
+        <div>{createField<LoginFormValuesTypeKeys>('Email',
+          'email', [required], Input)}</div>
+        <div>{createField<LoginFormValuesTypeKeys>('Пароль',
+          'password', [required], Input, { type: 'password' })}</div>
+        <div>{createField<LoginFormValuesTypeKeys>('Пароль',
+          'rememberMe', [], Input, { type: 'checkbox' })}</div>
         {error && <span className={style.formSummaryError}>{error}</span>}
 
         <div>
@@ -32,8 +34,9 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType,
         <div>
           <div>Введите символы с картинки</div>
           <img src={captchaUrl} alt={'captcha'}/>
-          <div><Field component={Input} name='captcha' placeholder='Введите символы'
-                      validate={required}/></div>
+          <div>{createField<LoginFormValuesTypeKeys>('Введите символы', 'captcha', [required], Input)}
+            {/*<Field component={Input} name='captcha' placeholder='Введите символы' validate={required}/>*/}
+          </div>
         </div>
         }
       </form>
@@ -59,6 +62,8 @@ type LoginFormValuesType = {
   email: string
   password: string
 }
+
+type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>;
 
 const Login: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
   const onSubmit = (formData: LoginFormValuesType) => {

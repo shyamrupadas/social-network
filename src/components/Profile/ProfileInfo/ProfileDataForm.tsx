@@ -4,32 +4,35 @@ import s from "./ProfileInfo.module.css";
 import style from "../../common/FormsContrls/FormsControls.module.css";
 import React from 'react';
 
-type LoginFormOwnProps = {
+type  ProfileDataFormOwnProps = {
   profile: any
 }
 
-type LoginFormValuesType = {
+export type ProfileDataFormValuesType = {
   fullName: string
   lookingForAJob: boolean
   lookingForAJobDescription: string
   aboutMe: string
+  contacts: any
 }
 
-const ProfileDataForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = ({ profile, handleSubmit, error }) => {
+type ProfileDataFormValuesTypeKeys = keyof ProfileDataFormValuesType;
+
+const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormValuesType, ProfileDataFormOwnProps> & ProfileDataFormOwnProps> = ({ profile, handleSubmit, error }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <strong>Имя</strong> {createField('Имя', 'fullName', [], Input)}
+        <strong>Имя</strong> {createField<ProfileDataFormValuesTypeKeys>('Имя', 'fullName', [], Input)}
       </div>
       <div>
-        Ищу работу: {createField('', 'lookingForAJob', [], Input, { type: 'checkbox' })}
+        Ищу работу: {createField<ProfileDataFormValuesTypeKeys>('', 'lookingForAJob', [], Input, { type: 'checkbox' })}
       </div>
       <div>
         Мои профессионалные навыки:
-        {createField('Мои профессионалные навыки', 'lookingForAJobDescription', [], Textarea)}
+        {createField<ProfileDataFormValuesTypeKeys>('Мои профессионалные навыки', 'lookingForAJobDescription', [], Textarea)}
       </div>
       <div>
-        Обо мне: {createField('Обо мне', 'aboutMe', [], Textarea)}
+        Обо мне: {createField<ProfileDataFormValuesTypeKeys>('Обо мне', 'aboutMe', [], Textarea)}
       </div>
       <div>
         <h3>Контакты</h3>
@@ -45,6 +48,6 @@ const ProfileDataForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginForm
   )
 }
 
-const ProfileDataReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({ form: 'edit-profile' })(ProfileDataForm)
+const ProfileDataReduxForm = reduxForm<ProfileDataFormValuesType, ProfileDataFormOwnProps>({ form: 'edit-profile' })(ProfileDataForm)
 
 export default ProfileDataReduxForm;
