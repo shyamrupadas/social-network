@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import {
   follow,
   requestUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
   unfollow,
 } from '../../redux/users-reducer';
 import Users from './Users';
@@ -34,9 +31,6 @@ type MapDispatchPropsType = {
   getUsers: (currentPage: number, pageSize: number) => void
   follow: (userId: number) => void
   unfollow: (userId: number) => void
-  setCurrentPage: any
-  setTotalUsersCount: any
-  toggleIsFetching: any
 }
 
 type OwnPropsType = {
@@ -87,6 +81,6 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 export default compose(
   connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps,{
-    follow, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching, getUsers: requestUsers
+    follow, unfollow, getUsers: requestUsers
     })
 )(UsersContainer)
