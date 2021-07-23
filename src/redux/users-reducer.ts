@@ -1,7 +1,7 @@
-import { userAPI } from '../api/api';
 import { UserType } from '../types/type';
 import { AppStateType, InferActionsTypes } from './redux-store';
 import { ThunkAction } from 'redux-thunk';
+import { userAPI } from '../api/users-api';
 
 const FOLLOW = 'social-network/users/FOLLOW';
 const UNFOLLOW = 'social-network/users/UNFOLLOW';

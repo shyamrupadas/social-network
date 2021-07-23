@@ -1,8 +1,8 @@
-import { profileAPI } from '../api/api';
 import { stopSubmit } from 'redux-form';
 import { PhotosType, PostType, ProfileType } from '../types/type';
 import { ThunkAction } from 'redux-thunk';
 import { AppStateType } from './redux-store';
+import { profileAPI } from '../api/profile-api';
 
 const ADD_POST = 'social-network/profile/ADD-POST';
 const SET_USER_PROFILE = 'social-network/profile/SET_USER_PROFILE';
