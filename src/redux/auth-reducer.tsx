@@ -1,10 +1,8 @@
 import { ResultCodeEnum, ResultCodeForCaptchaEnum } from '../api/api';
 import { FormAction, stopSubmit } from 'redux-form';
-import { ThunkAction } from 'redux-thunk';
-import { AppStateType, BaseThunkType, InferActionsTypes } from './redux-store';
+import { BaseThunkType, InferActionsTypes } from './redux-store';
 import { authAPI } from '../api/auth-api';
 import { securityAPI } from '../api/security-api';
-import { Action } from 'redux';
 
 const initialState = {
   id: null as number | null,

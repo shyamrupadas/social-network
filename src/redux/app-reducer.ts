@@ -1,15 +1,9 @@
 import { checkAuthorised } from './auth-reducer';
-import { ThunkAction } from 'redux-thunk';
-import { AppStateType, InferActionsTypes } from './redux-store';
-
-const INITIALIZING_SUCCESS = 'sn/app/INITIALIZING_SUCCESS';
+import { BaseThunkType, InferActionsTypes } from './redux-store';
 
 const initialState = {
   initialized: false
 };
-
-export type InitialStateType = typeof initialState;
-type ActionsType = InferActionsTypes<typeof actions>;
 
 const appReducer = (state = initialState, action: ActionsType): InitialStateType => {
   switch (action.type) {
@@ -28,7 +22,7 @@ export const actions = {
   initializingSuccess: () => ({ type: 'sn/app/INITIALIZING_SUCCESS' } as const)
 }
 
-export const initializeApp = () => async (dispatch: any) => {
+export const initializeApp = (): ThunkType => async (dispatch) => {
   let promise = dispatch(checkAuthorised());
 
   Promise.all([promise])
@@ -38,3 +32,7 @@ export const initializeApp = () => async (dispatch: any) => {
 }
 
 export default appReducer;
+
+export type InitialStateType = typeof initialState;
+type ActionsType = InferActionsTypes<typeof actions>;
+type ThunkType = BaseThunkType<ActionsType>;
