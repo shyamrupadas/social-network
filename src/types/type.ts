@@ -13,10 +13,6 @@ export type ContactsType = {
   youtube: string
   mainLink: string
 }
-export type PhotosType = {
-  small: string
-  large: string
-}
 export type ProfileType = {
   userId: number
   lookingForAJob: boolean
@@ -25,7 +21,10 @@ export type ProfileType = {
   contacts: ContactsType
   photos: PhotosType
 }
-
+export type PhotosType = {
+  small: string
+  large: string
+}
 export type UserType = {
   id: number
   name: string
