@@ -1,4 +1,4 @@
-import { ResultCodeEnum, ResultCodeForCaptcha} from '../api/api';
+import { ResultCodeEnum, ResultCodeForCaptchaEnum} from '../api/api';
 import { stopSubmit } from 'redux-form';
 import { ThunkAction } from 'redux-thunk';
 import { AppStateType } from './redux-store';
@@ -74,10 +74,10 @@ export const login = (email: string,
                       captcha: string): ThunkType => async (dispatch) => {
   const data = await authAPI.login(email, password, rememberMe, captcha);
 
-  if (data.resultCode === 0) {
+  if (data.resultCode === ResultCodeEnum.Success) {
     dispatch(checkAuthorised());
   } else {
-    if (data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
+    if (data.resultCode === ResultCodeForCaptchaEnum.CaptchaIsRequired) {
       dispatch(getCaptchaUrl());
     }
     let message = data.messages.length > 0 ? data.messages : 'Some error';
