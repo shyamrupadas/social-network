@@ -87,15 +87,15 @@ export const login = (email: string,
 }
 
 export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
-  const response = await securityAPI.getCaptchaUrl();
-  const captchaUrl = response.data.url;
+  const data = await securityAPI.getCaptchaUrl();
+  const captchaUrl = data.url;
   dispatch(getCaptchaUrlSuccess(captchaUrl));
 }
 
 export const logout = (): ThunkType => async (dispatch) => {
   let response = await authAPI.logout();
 
-  if (response.data.resultCode === 0) {
+  if (response.data.resultCode === ResultCodeEnum.Success) {
     dispatch(setAuthUserData(null, null, null, false));
   }
 }

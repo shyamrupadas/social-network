@@ -91,20 +91,20 @@ export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessActionType
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
 
 export const getUserProfile = (userId: number): ThunkType => async (dispatch) => {
-  let response = await profileAPI.getUserProfile(userId);
-  dispatch(setUserProfile(response.data));
+  let data = await profileAPI.getUserProfile(userId);
+  dispatch(setUserProfile(data));
 }
 
 export const getStatus = (userId: number): ThunkType => async (dispatch) => {
-  let response = await profileAPI.getStatus(userId);
-  dispatch(setStatus(response.data));
+  let data = await profileAPI.getStatus(userId);
+  dispatch(setStatus(data));
 }
 
 export const updateStatus = (status: string): ThunkType => async (dispatch) => {
   try {
-    let response = await profileAPI.updateStatus(status);
+    let data = await profileAPI.updateStatus(status);
 
-    if (response.data.resultCode === 0) {
+    if (data.resultCode === 0) {
       dispatch(setStatus(status));
     }
   } catch (error) {
@@ -115,21 +115,21 @@ export const updateStatus = (status: string): ThunkType => async (dispatch) => {
 }
 
 export const savePhoto = (file: any): ThunkType => async (dispatch) => {
-  let response = await profileAPI.savePhoto(file);
+  let data = await profileAPI.savePhoto(file);
 
-  if (response.data.resultCode === 0) {
-    dispatch(savePhotoSuccess(response.data.data.photos));
+  if (data.resultCode === 0) {
+    dispatch(savePhotoSuccess(data.data.photos));
   }
 }
 
 export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch) => {
-  let response = await profileAPI.saveProfile(profile);
-  if (response.data.resultCode === 0) {
+  let data = await profileAPI.saveProfile(profile);
+  if (data.resultCode === 0) {
     dispatch(getUserProfile(profile.userId));
   } else {
     // @ts-ignore
-    dispatch(stopSubmit('edit-profile', { _error: response.data.messages[0] }));
-    return Promise.reject(response.data.messages[0]);
+    dispatch(stopSubmit('edit-profile', { _error: data.messages[0] }));
+    return Promise.reject(data.messages[0]);
   }
 }
 
