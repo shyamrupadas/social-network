@@ -11,13 +11,18 @@ import React, { Component, Suspense } from "react";
 import { connect, Provider } from "react-redux";
 import { initializeApp } from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
-import store from "./redux/redux-store";
+import store, { AppStateType } from "./redux/redux-store";
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
-class App extends Component {
-  catchAllUnhandledErrors = (promiseRejectionEvent) => {
+type MapPropsType = ReturnType<typeof mapStateToProps>;
+type DispatchPropsType = {
+  initializeApp: () => void
+};
+
+class App extends Component<MapPropsType & DispatchPropsType> {
+  catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
     alert('Произошла ошибка!');
   }
 
@@ -41,7 +46,6 @@ class App extends Component {
         <HeaderContainer />
         <Sidebar/>
         <div className='app-wrapper-content'>
-          {/*<Switch>*/}
           <Suspense fallback={<Preloader />}>
             <Route path='/profile/:userId?' render={() => <ProfileContainer /> } />
             <Route path='/dialogs' render={() => <DialogsContainer />}/>
@@ -52,21 +56,19 @@ class App extends Component {
           <Route path='/music' render={() => <Music />} />
           <Route path='/settings' render={() => <Settings />} />
           <Route path='/login' render={() => <LoginPage />} />
-          {/*<Route path='*' render={() => <div>404 - PAGE NOT FOUND</div>} />*/}
-          {/*</Switch>*/}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized
 })
 
 const AppContainer = connect(mapStateToProps, { initializeApp })(App);
 
-const SocialNetworkApp = () => {
+const SocialNetworkApp: React.FC = () => {
   return <React.StrictMode>
     <HashRouter>
       <Provider store={store}>
