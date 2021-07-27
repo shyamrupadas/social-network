@@ -1,14 +1,13 @@
 import style from '../common/FormsContrls/FormsControls.module.css'
 import s from './Login.module.css'
-import { Field, InjectedFormProps, reduxForm } from "redux-form";
-import { createField, Input, Textarea } from "../common/FormsContrls/FormsControls";
+import { InjectedFormProps, reduxForm } from "redux-form";
+import { createField, Input } from "../common/FormsContrls/FormsControls";
 import { required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reducer";
 import { Redirect } from "react-router-dom";
 import { AppStateType } from '../../redux/redux-store';
 import React from 'react';
-import { ProfileDataFormValuesType } from '../Profile/ProfileInfo/ProfileDataForm';
 
 type LoginFormOwnProps = {
   captchaUrl: string | null
@@ -50,18 +49,18 @@ const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({ form:
 type MapStatePropsType = {
   captchaUrl: string | null
   isAuth: boolean
-}
+};
 
 type MapDispatchPropsType = {
   login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
-}
+};
 
 type LoginFormValuesType = {
   captcha: string
   rememberMe: boolean
   email: string
   password: string
-}
+};
 
 type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>;
 

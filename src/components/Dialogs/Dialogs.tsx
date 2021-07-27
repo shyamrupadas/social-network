@@ -2,23 +2,20 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Messages/Message";
 import React from "react";
-import { Field, reduxForm, SubmitHandler } from "redux-form";
-import { Textarea } from "../common/FormsContrls/FormsControls";
+import { InjectedFormProps, reduxForm, SubmitHandler } from "redux-form";
+import { createField, Textarea } from "../common/FormsContrls/FormsControls";
 import { maxLengthCreator, required } from "../../utils/validators/validators";
+import { DialogType, InitialStateType, MessageType } from '../../redux/dialogs-reducer';
 
-type DialogType = {
-  id: number
-  name: string
-};
-type MessageType = {
-  id: number
-  message: string
-};
 type PropsType = {
   dialogs: Array<DialogType>
   messages: Array<MessageType>
   sendMessage: (newMessageBody: string) => void
-}
+};
+
+type DialogsFormValuesType = {
+  newMessageBody: string
+};
 
 const Dialogs: React.FC<PropsType> = (props) => {
   const dialogsElements = props.dialogs.map((d: { name: string; id: number; }) =>
@@ -26,9 +23,10 @@ const Dialogs: React.FC<PropsType> = (props) => {
   const messagesElements = props.messages.map((m: { message: string; id: number; }) =>
     <Message msg={m.message} key={m.id}/>);
 
-  const addNewMessage = (values: any) => {
+  const addNewMessage = (values: DialogsFormValuesType) => {
     props.sendMessage(values.newMessageBody)
-  }
+  };
+
   return (
 
     <div className={s.dialogs}>
@@ -45,15 +43,18 @@ const Dialogs: React.FC<PropsType> = (props) => {
 
 const maxLength50 = maxLengthCreator(50)
 
-type DialogsFormPropsType = {
+type DialogsFormValuesKeysType = Extract<keyof DialogsFormValuesType, string>;
+type DialogsFormPropsType = {};
+
+type DialogsFormPropsType1 = {
   handleSubmit: SubmitHandler<{}, {}, string>
 }
 
-const DialogsForm: React.FC<DialogsFormPropsType> = (props) => {
+const DialogsForm: React.FC<InjectedFormProps<DialogsFormValuesType, DialogsFormPropsType> & DialogsFormPropsType> = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
-      <div><Field component={Textarea} placeholder='Напишите сообщение!' name='newMessageBody'
-                  validate={[required, maxLength50]}/></div>
+      <div>{createField<DialogsFormValuesKeysType>('Напишите сообщение!',
+        'newMessageBody', [required, maxLength50], Textarea)}</div>
       <div>
         <button>Отправить!</button>
       </div>
@@ -61,6 +62,6 @@ const DialogsForm: React.FC<DialogsFormPropsType> = (props) => {
   )
 }
 
-const DialogsReduxForm = reduxForm({ form: 'dialogs' })(DialogsForm)
+const DialogsReduxForm = reduxForm<DialogsFormValuesType, DialogsFormPropsType>({ form: 'dialogs' })(DialogsForm)
 
 export default Dialogs;
