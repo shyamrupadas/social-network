@@ -1,6 +1,6 @@
 .userPhoto {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50px;
 }
 
@@ -10,4 +10,13 @@
 
 .usersWrapper {
     margin: 20px 0 20px 0;
+}
+
+.userWrapper {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.userElement {
+    margin-right: 20px;
 }
