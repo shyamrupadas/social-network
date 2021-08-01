@@ -1,8 +1,14 @@
-import c from "./Post.module.css";
+import s from "./Post.module.css";
+import React from 'react';
 
-const Post = (props) => {
+type PropsType = {
+  message: string
+  likesCount: number
+}
+
+const Post: React.FC<PropsType> = (props) => {
   return (
-    <div className={c.item}>
+    <div className={s.item}>
       <img src="https://hypeava.ru/uploads/posts/2018-05/1527186681_1.jpg" alt="Ava"/>
       {props.message}
       <div>
