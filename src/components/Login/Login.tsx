@@ -1,7 +1,7 @@
 import style from '../common/FormsContrls/FormsControls.module.css'
 import s from './Login.module.css'
 import { InjectedFormProps, reduxForm } from "redux-form";
-import { createField, Input } from "../common/FormsContrls/FormsControls";
+import { createField, GetStringTypes, Input } from "../common/FormsContrls/FormsControls";
 import { required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reducer";
@@ -34,7 +34,6 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType,
           <div>Введите символы с картинки</div>
           <img src={captchaUrl} alt={'captcha'}/>
           <div>{createField<LoginFormValuesTypeKeys>('Введите символы', 'captcha', [required], Input)}
-            {/*<Field component={Input} name='captcha' placeholder='Введите символы' validate={required}/>*/}
           </div>
         </div>
         }
@@ -62,7 +61,7 @@ type LoginFormValuesType = {
   password: string
 };
 
-type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>;
+type LoginFormValuesTypeKeys = GetStringTypes<LoginFormValuesType>;
 
 const Login: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
   const onSubmit = (formData: LoginFormValuesType) => {
