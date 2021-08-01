@@ -36,15 +36,15 @@ const Paginator: React.FC<PropsType> = ({
 
     {pages.map((p, index) => {
       if ((currentPage - p) < 2 && (p - currentPage) < 2) {
-        // return <span key={index} className={props.currentPage === p ? styles.selectedPage : undefined}
         return <span key={index} className={cn({
           [styles.selectedPage]: currentPage === p
         }, styles.pageNumber)}
-                     onClick={(e) => {
+                     onClick={() => {
                        onPageChanged(p)
                      }}>{p + ' '}
           </span>
       }
+      return null
     })}
     <span onClick={() => {
       if (currentPage < pagesCount) {

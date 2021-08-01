@@ -2,10 +2,10 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Messages/Message";
 import React from "react";
-import { InjectedFormProps, reduxForm, SubmitHandler } from "redux-form";
+import { InjectedFormProps, reduxForm } from "redux-form";
 import { createField, Textarea } from "../common/FormsContrls/FormsControls";
 import { maxLengthCreator, required } from "../../utils/validators/validators";
-import { DialogType, InitialStateType, MessageType } from '../../redux/dialogs-reducer';
+import { DialogType, MessageType } from '../../redux/dialogs-reducer';
 
 type PropsType = {
   dialogs: Array<DialogType>
@@ -45,10 +45,6 @@ const maxLength50 = maxLengthCreator(50)
 
 type DialogsFormValuesKeysType = Extract<keyof DialogsFormValuesType, string>;
 type DialogsFormPropsType = {};
-
-type DialogsFormPropsType1 = {
-  handleSubmit: SubmitHandler<{}, {}, string>
-}
 
 const DialogsForm: React.FC<InjectedFormProps<DialogsFormValuesType, DialogsFormPropsType> & DialogsFormPropsType> = (props) => {
   return (
