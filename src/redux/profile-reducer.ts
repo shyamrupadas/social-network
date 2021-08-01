@@ -10,8 +10,7 @@ const initialState = {
     { id: 3, message: 'Какой-нибудь еще пост', likesCount: 1108 },
   ] as Array<PostType>,
   profile: null as ProfileType | null,
-  status: '',
-  newPostText: ''
+  status: ''
 };
 
 const profileReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -24,8 +23,7 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
       };
       return {
         ...state,
-        posts: [...state.posts, newPost],
-        newPostText: ''
+        posts: [...state.posts, newPost]
       };
     case 'sn/profile/SET_STATUS':
       return {
