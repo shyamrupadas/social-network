@@ -1,6 +1,6 @@
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import { createField, GetStringTypes, Textarea } from '../../../common/FormsContrls/FormsControls';
-import { maxLengthCreator, required } from '../../../../utils/validators/validators';
+import { required } from '../../../../utils/validators/validators';
 import React from 'react';
 
 type PropsType = {};
@@ -13,13 +13,12 @@ type AddPostsFormValuesTypeKeys = GetStringTypes<AddPostsFormValuesType>;
 
 const AppPostForm: React.FC<InjectedFormProps<AddPostsFormValuesType,
   PropsType> & PropsType> = (props) => {
-  const maxLength10 = maxLengthCreator(10);
 
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
         {createField<AddPostsFormValuesTypeKeys>('Как у вас дела?', 'newPostText',
-          [required, maxLength10], Textarea)}
+          [required], Textarea)}
       </div>
       <div>
         <button>Добавить запись</button>
@@ -28,4 +27,4 @@ const AppPostForm: React.FC<InjectedFormProps<AddPostsFormValuesType,
   )
 }
 
-export default reduxForm<AddPostsFormValuesType, PropsType>({ form: 'ProfileAddNewPostForm' })(AppPostForm)
+export default reduxForm<AddPostsFormValuesType, PropsType>({ form: 'ProfileAddNewPostForm' })(AppPostForm);
