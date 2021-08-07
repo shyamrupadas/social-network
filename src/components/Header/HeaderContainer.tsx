@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import { logout } from '../../redux/auth-reducer';
 import { AppStateType } from '../../redux/redux-store';
 
-class HeaderContainer extends React.Component<MapPropsType & DispatchPropsType> {
-
-  render() {
-    return <Header {...this.props}/>
-  }
+const HeaderContainer: React.FC<MapPropsType & DispatchPropsType> = (props) => {
+  return <Header {...props} />
 }
 
 const mapStateToProps = (state: AppStateType) => ({
