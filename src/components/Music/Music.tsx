@@ -1,4 +1,6 @@
-const Music = () => {
+import React from 'react';
+
+const Music: React.FC = () => {
   return (
     <div>
       Music

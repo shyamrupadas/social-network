@@ -1,4 +1,6 @@
-const News = () => {
+import React from 'react';
+
+const News: React.FC = () => {
   return (
     <div>
       News
