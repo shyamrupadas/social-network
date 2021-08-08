@@ -1,10 +1,10 @@
 import s from './Dialogs.module.css'
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Messages/Message";
-import React from "react";
-import { InjectedFormProps, reduxForm } from "redux-form";
-import { createField, Textarea } from "../common/FormsContrls/FormsControls";
-import { maxLengthCreator, required } from "../../utils/validators/validators";
+import DialogItem from './DialogItem/DialogItem';
+import Message from './Messages/Message';
+import React from 'react';
+import { InjectedFormProps, reduxForm } from 'redux-form';
+import { createField, Textarea } from '../common/FormsContrls/FormsControls';
+import { maxLengthCreator, required } from '../../utils/validators/validators';
 import { DialogType, MessageType } from '../../redux/dialogs-reducer';
 
 type PropsType = {
