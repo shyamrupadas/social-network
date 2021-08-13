@@ -44,11 +44,11 @@ class App extends Component<MapPropsType & DispatchPropsType> {
     return (
       <div className='app-wrapper'>
         <HeaderContainer />
-        <Sidebar/>
+        <Sidebar />
         <div className='app-wrapper-content'>
           <Suspense fallback={<Preloader />}>
-            <Route path='/profile/:userId?' render={() => <ProfileContainer /> } />
-            <Route path='/dialogs' render={() => <DialogsContainer />}/>
+            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/dialogs' render={() => <DialogsContainer />} />
           </Suspense>
           <Route exact path='/' render={() => <Redirect to={'/profile'} />} />
           <Route path='/users' render={() => <UsersContainer pageTitle={'My social network'} />} />
@@ -72,7 +72,7 @@ const SocialNetworkApp: React.FC = () => {
   return <React.StrictMode>
     <HashRouter>
       <Provider store={store}>
-        <AppContainer/>
+        <AppContainer />
       </Provider>
     </HashRouter>
   </React.StrictMode>
