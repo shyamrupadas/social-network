@@ -1,5 +1,5 @@
 import './App.css';
-import { HashRouter, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -70,11 +70,11 @@ const AppContainer = connect(mapStateToProps, { initializeApp })(App);
 
 const SocialNetworkApp: React.FC = () => {
   return <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>
 }
 
