@@ -1,4 +1,4 @@
-import { ResultCodeEnum, ResultCodeForCaptchaEnum } from '../api/api';
+import { ResultCodesEnum, ResultCodeForCaptchaEnum } from '../api/api';
 import { FormAction, stopSubmit } from 'redux-form';
 import { BaseThunkType, InferActionsTypes } from './redux-store';
 import { authAPI } from '../api/auth-api';
@@ -38,7 +38,7 @@ export const actions = {
 export const checkAuthorised = (): ThunkType => async (dispatch) => {
   let meData = await authAPI.me();
 
-  if (meData.resultCode === ResultCodeEnum.Success) {
+  if (meData.resultCode === ResultCodesEnum.Success) {
     let { id, login, email } = meData.data;
     dispatch(actions.setAuthUserData(id, login, email, true));
   }
@@ -47,7 +47,7 @@ export const checkAuthorised = (): ThunkType => async (dispatch) => {
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch) => {
   const data = await authAPI.login(email, password, rememberMe, captcha);
 
-  if (data.resultCode === ResultCodeEnum.Success) {
+  if (data.resultCode === ResultCodesEnum.Success) {
     dispatch(checkAuthorised());
   } else {
     if (data.resultCode === ResultCodeForCaptchaEnum.CaptchaIsRequired) {
@@ -67,7 +67,7 @@ export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
 export const logout = (): ThunkType => async (dispatch) => {
   let response = await authAPI.logout();
 
-  if (response.data.resultCode === ResultCodeEnum.Success) {
+  if (response.data.resultCode === ResultCodesEnum.Success) {
     dispatch(actions.setAuthUserData(null, null, null, false));
   }
 }

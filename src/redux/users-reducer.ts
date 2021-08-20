@@ -1,6 +1,6 @@
 import { UserType } from '../types/type';
 import { BaseThunkType, InferActionsTypes } from './redux-store';
-import { userAPI } from '../api/users-api';
+import { usersAPI } from '../api/users-api';
 
 const initialState = {
   users: [] as Array<UserType>,
@@ -89,7 +89,7 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => {
     dispatch(actions.setCurrentPage(page));
     dispatch(actions.toggleIsFetching(true));
 
-    let data = await userAPI.getUsers(page, pageSize);
+    let data = await usersAPI.getUsers(page, pageSize);
     dispatch(actions.toggleIsFetching(false));
     dispatch(actions.setUsers(data.items));
     dispatch(actions.setTotalUsersCount(data.totalCount));
@@ -100,7 +100,7 @@ export const follow = (userId: number): ThunkType => {
   return async (dispatch) => {
     dispatch(actions.toggleFollowingInProgress(true, userId));
 
-    let data = await userAPI.followUser(userId)
+    let data = await usersAPI.follow(userId)
     if (data.resultCode === 0) {
       dispatch(actions.followSuccess(userId))
     }
@@ -112,7 +112,7 @@ export const unfollow = (userId: number): ThunkType => {
   return async (dispatch) => {
     dispatch(actions.toggleFollowingInProgress(true, userId));
 
-    let data = await userAPI.unfollowUser(userId)
+    let data = await usersAPI.unfollow(userId)
     if (data.resultCode === 0) {
       dispatch(actions.unfollowSuccess(userId))
     }
