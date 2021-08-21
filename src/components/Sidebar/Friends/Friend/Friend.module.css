@@ -2,4 +2,14 @@
     width: 40px;
     height: 40px;
     border-radius: 30px;
+    display: flex;
+}
+
+.item a {
+    color: white;
+    text-decoration: none;
+}
+
+.item a:hover {
+    color: gold;
 }

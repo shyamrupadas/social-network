@@ -13,5 +13,10 @@ export const usersAPI = {
   unfollow(userId: number) {
     return instance.delete(`follow/${userId}`)
       .then(res => res.data) as Promise<APIResponseType>;
+  },
+
+  getFriends(currentPage = 1, pageSize = 6) {
+    return instance.get<getItemsType>(`users?page=${currentPage}&count=${pageSize}&friend=true`)
+      .then(res => res.data);
   }
 };

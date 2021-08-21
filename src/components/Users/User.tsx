@@ -1,8 +1,8 @@
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.jpg";
 import React from "react";
-import {NavLink} from "react-router-dom";
-import {UserType} from "../../types/type";
+import { NavLink } from "react-router-dom";
+import { UserType } from "../../types/type";
 
 type PropsType = {
   user: UserType
@@ -11,14 +11,14 @@ type PropsType = {
   unfollow: (userId: number) => void
 }
 
-let User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}) => {
+let User: React.FC<PropsType> = ({ user, followingInProgress, follow, unfollow }) => {
 
   return (
     <div className={styles.userWrapper}>
       <div className={styles.userElement}>
         <NavLink to={'/profile/' + user.id}>
           <img src={user.photos.small || userPhoto} className={styles.userPhoto}
-               alt="Some img"/>
+               alt="Some img" />
         </NavLink>
       </div>
       <div>
