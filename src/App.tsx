@@ -4,7 +4,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Sidebar from './components/Sidebar/Sidebar';
-import UsersContainer from './components/Users/UsersContainer';
+import { UsersPage } from './components/Users/UsersPage';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
 import React, { Component, Suspense } from 'react';
@@ -51,7 +51,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
             <Route path='/dialogs' render={() => <DialogsContainer />} />
           </Suspense>
           <Route exact path='/' render={() => <Redirect to={'/profile'} />} />
-          <Route path='/users' render={() => <UsersContainer pageTitle={'My social network'} />} />
+          <Route path='/users' render={() => <UsersPage pageTitle={'My social network'} />} />
           <Route path='/news' render={() => <News />} />
           <Route path='/music' render={() => <Music />} />
           <Route path='/settings' render={() => <Settings />} />
