@@ -6,7 +6,7 @@ import Settings from './components/Settings/Settings';
 import Sidebar from './components/Sidebar/Sidebar';
 import { UsersPage } from './components/Users/UsersPage';
 import HeaderContainer from './components/Header/HeaderContainer';
-import LoginPage from './components/Login/Login';
+import { LoginPage } from './components/Login/LoginPage';
 import React, { Component, Suspense } from 'react';
 import { connect, Provider } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
