@@ -13,6 +13,7 @@ import {
   getUsers,
   getUsersFilter
 } from '../../redux/users-selectors';
+import { useHistory } from 'react-router-dom';
 
 
 export const Users: React.FC = () => {
@@ -25,6 +26,15 @@ export const Users: React.FC = () => {
   const followingInProgress = useSelector(getFollowingInProgress);
 
   const dispatch = useDispatch();
+
+  const history = useHistory();
+
+  useEffect(() => {
+    history.push({
+      pathname: '/users',
+      search: `?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`
+    })
+  }, [filter, currentPage]);
 
   useEffect(() => {
     dispatch(requestUsers(currentPage, pageSize, filter))
