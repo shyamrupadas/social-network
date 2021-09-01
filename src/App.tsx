@@ -1,4 +1,5 @@
 import './App.css';
+import 'antd/dist/antd.css';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
