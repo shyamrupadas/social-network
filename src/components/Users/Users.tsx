@@ -53,7 +53,7 @@ export const Users: React.FC = () => {
     }
 
     dispatch(requestUsers(actualPage, pageSize, actualFilter))
-  }, []);
+  }, [currentPage, dispatch, filter, history.location.search, pageSize]);
 
   useEffect(() => {
 
@@ -67,7 +67,7 @@ export const Users: React.FC = () => {
       pathname: '/users',
       search: queryString.stringify(query)
     })
-  }, [filter, currentPage]);
+  }, [filter, currentPage, history]);
 
   const onPageChanged = (pageNumber: number) => {
     dispatch(requestUsers(pageNumber, pageSize, filter));
